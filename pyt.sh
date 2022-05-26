@@ -76,7 +76,7 @@ then {
         ./$maker > ./.pyt_make/pyt.in
         time ./$nam < ./.pyt_make/pyt.in > ./.pyt_make/pyt.out
         ./$std < ./.pyt_make/pyt.in > ./.pyt_make/std.out
-        if diff ./.pyt_make/pyt.out ./.pyt_make/std.out
+        if diff ./.pyt_make/pyt.out ./.pyt_make/std.out -w -q > pyt_tmp
         then printf "$i testcase \e[1;32mAccepted!\e[m \n"
         else {
             printf "\e[1;31mWrong Answer\e[m on test $i \n"
@@ -86,6 +86,7 @@ then {
         }
         fi
     done
+    rm pyt_tmp
 }
 else {
     mkdir .pyt_data
@@ -136,7 +137,7 @@ else {
             continue;
         }
         fi
-        if diff ./.pyt_data/pyt.out ./.pyt_data/my.out -w -q
+        if diff ./.pyt_data/pyt.out ./.pyt_data/my.out -w -q > pyt_tmp
         then {
             printf "# test $i : "
             printf "\e[1;32mAccepted !\e[m \n"
@@ -175,5 +176,6 @@ else {
     printf "\n"
     let float sco=100*$cnt_ac/$lim
     printf "your score : $sco \n"
+    rm pyt_tmp
 }
 fi
