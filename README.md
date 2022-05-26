@@ -19,3 +19,5 @@ Add history !
 You can choose to use the judge data from the latest judge!
 
 By this,you won't waste so many time to answer the questions.
+
+Add color,so you can easily distinguish the status you got!
