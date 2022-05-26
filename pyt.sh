@@ -1,3 +1,4 @@
+#!/bin/bash
 # local judger !
 
 mkdir .pyt_history
@@ -170,7 +171,7 @@ else {
         printf "The first Time Limit Exceeded on test $tle_id \n"
     }
     fi
-    let float sco=$cnt_ac/$lim*100
+    let float sco=100*$cnt_ac/$lim
     printf "your score : $sco \n"
 }
 fi
