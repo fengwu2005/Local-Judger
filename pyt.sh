@@ -158,9 +158,10 @@ else {
 
     printf "\nover!\n"
 
-    printf "Accepted on $cnt_ac testcases ! \n"
-    printf "Wrong Answer on $cnt_wa testcases ! \n"
-    printf "Tim Limit Exceeded on $cnt_tle testcases ! \n"
+    printf "Accepted             on $cnt_ac testcases ! \n"
+    printf "Wrong Answer         on $cnt_wa testcases ! \n"
+    printf "Time Limit Exceeded  on $cnt_tle testcases ! \n"
+    printf "\n"
     if [ $wa_id -ne 0 ]
     then {
         printf "The first Wrong Answer on test $wa_id \n"
@@ -171,6 +172,7 @@ else {
         printf "The first Time Limit Exceeded on test $tle_id \n"
     }
     fi
+    printf "\n"
     let float sco=100*$cnt_ac/$lim
     printf "your score : $sco \n"
 }
