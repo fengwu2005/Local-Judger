@@ -77,9 +77,9 @@ then {
         time ./$nam < ./.pyt_make/pyt.in > ./.pyt_make/pyt.out
         ./$std < ./.pyt_make/pyt.in > ./.pyt_make/std.out
         if diff ./.pyt_make/pyt.out ./.pyt_make/std.out
-        then printf "$i testcase Accepted! \n"
+        then printf "$i testcase \e[1;32mAccepted!\e[m \n"
         else {
-            printf "Wrong Answer on test $i \n"
+            printf "\e[1;31mWrong Answer\e[m on test $i \n"
             cp ./.pyt_make/pyt.in wa.in
             cp ./.pyt_make/std.out wa.out 
             break
@@ -124,7 +124,7 @@ else {
         if ! timeout $tim ./$nam < ./.pyt_data/pyt.in > ./.pyt_data/my.out
         then {
             printf "# test $i : "
-            printf "Time Limit Exceeded ! \n"
+            printf "\e[1;33mTime Limit Exceeded !\e[m \n"
             time ./$nam < ./.pyt_data/pyt.in > ./.pyt_data/my.out
             let cnt_tle=cnt_tle+1
             if [ $tle_id -eq 0 ]
@@ -136,15 +136,15 @@ else {
             continue;
         }
         fi
-        if diff ./.pyt_data/pyt.out ./.pyt_data -w -q
+        if diff ./.pyt_data/pyt.out ./.pyt_data/my.out -w -q
         then {
             printf "# test $i : "
-            printf "Accepted ! \n"
+            printf "\e[1;32mAccepted !\e[m \n"
             let cnt_ac=cnt_ac+1
         }
         else {
             printf "# test $i : "
-            printf "Wrong Answer ! \n"
+            printf "\e[1;31mWrong Answer !\e[m \n"
             let cnt_wa=cnt_wa+1
             if [ $wa_id -eq 0 ]
             then {
@@ -158,18 +158,18 @@ else {
 
     printf "\nover!\n"
 
-    printf "Accepted             on $cnt_ac testcases ! \n"
-    printf "Wrong Answer         on $cnt_wa testcases ! \n"
-    printf "Time Limit Exceeded  on $cnt_tle testcases ! \n"
+    printf "\e[1;32mAccepted\e[m             on \e[1;32m$cnt_ac\e[m testcases ! \n"
+    printf "\e[1;31mWrong Answer\e[m         on \e[1;31m$cnt_wa\e[m testcases ! \n"
+    printf "\e[1;33mTime Limit Exceeded\e[m  on \e[1;33m$cnt_tle\e[m testcases ! \n"
     printf "\n"
     if [ $wa_id -ne 0 ]
     then {
-        printf "The first Wrong Answer on test $wa_id \n"
+        printf "The first \e[1;31mWrong Answer\e[m on test \e[1;31m$wa_id\e[m \n"
     }
     fi
     if [ $tle_id -ne 0 ]
     then {
-        printf "The first Time Limit Exceeded on test $tle_id \n"
+        printf "The first \e[1;33mTime Limit Exceeded\e[m on test \e[1;33m$tle_id\e[m \n"
     }
     fi
     printf "\n"
